@@ -1,2 +1,3 @@
 # nvim
-nvim configration by dein and lua
+
+neovim configruation writing by lua

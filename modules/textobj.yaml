@@ -1,0 +1,8 @@
+- repo: kana/vim-operator-user
+
+- repo: kana/vim-operator-replace
+  on_map: { vnx: <Plug> }
+
+- repo: rhysd/vim-operator-surround
+  depends: vim-operator-user
+  on_map: { n: <Plug> }

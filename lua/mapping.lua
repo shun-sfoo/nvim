@@ -175,6 +175,8 @@ function mapping:load_plugin_define()
     ["n|<Leader>e"]      = map_cr("CocCommand explorer"):with_silent(),
     -- coc-translation
     ["n|<Leader>tt"]     = map_cr("CocCommand translator.popup"):with_silent(),
+    -- bufferline
+    ["n|gb"]             = map_cr("BufferLinePick"):with_silent(),
   }
 end
 

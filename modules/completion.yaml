@@ -30,7 +30,8 @@
         \ 'coc-rainbow-fart',
         \ 'coc-prettier',
         \ 'coc-translator',
-        \ 'coc-metals'
+        \ 'coc-metals',
+        \ 'coc-solargraph'
         \]
 
     augroup MyAutoCmd

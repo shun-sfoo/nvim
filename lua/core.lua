@@ -56,7 +56,7 @@ function M.load_core()
   M.leader_map()
   options:load_options()
   dein:load_repos()
-  local mapping = require 'mapping'
+  require 'mapping'
   require 'eviline'
   autocmd.load_autocmds()
 end

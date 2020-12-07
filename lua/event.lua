@@ -44,7 +44,8 @@ function autocmd.load_autocmds()
 
     ft = {
       {"FileType", "dashboard", "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2"};
-      {"BufNewFile,BufRead","*.toml"," setf toml"},
+      {"BufNewFile,BufRead","*.toml"," setf toml"};
+      {"BufRead", "*.class", "lua vim.api.nvim_command('%!xxd')"};
     };
 
     yank = {

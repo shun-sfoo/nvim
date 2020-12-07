@@ -1,24 +1,30 @@
 - repo: kyazdani42/nvim-web-devicons
 
-- repo: Akin909/nvim-bufferline.lua
+- repo: akinsho/nvim-bufferline.lua
   depends: nvim-web-devicons
   hook_add: |
     lua << EOF
     require'bufferline'.setup{
-        options = {
-          modified_icon = '✥',
-          buffer_close_icon = '',
-          mappings = true,
-          always_show_bufferline = false,
-        };
-        highlights = {
-          bufferline_selected = {
-            gui = "bold",
-          };
-        };
+      options = {
+        view = "multiwindow",
+        numbers = "ordinal",
+        number_style = "superscript",
+        mappings = true,
+        buffer_close_icon= '',
+        modified_icon = '●',
+        close_icon = '',
+        left_trunc_marker = '',
+        right_trunc_marker = '',
+        max_name_length = 18,
+        max_prefix_length = 15,
+        tab_size = 18,
+        show_buffer_close_icons = true, 
+        separator_style = "thin",
+        always_show_bufferline = true,
       }
+    }
     EOF
-
+  
 - repo: glepnir/galaxyline.nvim
 
 - repo: glepnir/oceanic-material
@@ -39,17 +45,17 @@
           \ 'command': 'SessionLoad'},
       \ 'find_history'        :{
           \ 'description': ['  Recently opened files                   SPC f h'],
-          \ 'command': 'history'},
+          \ 'command': 'Clap history'},
       \ 'find_file'           :{
           \ 'description': ['  Find  File                              SPC f f'],
-          \ 'command': 'filer'},
+          \ 'command': 'Clap filer'},
       \ 'new_file'            :{
           \ 'description': ['  New   File                              SPC t f'],
-          \ 'command': 'filer'},
+          \ 'command': 'Clap filer'},
       \ 'change_colorscheme'  :{
           \ 'description': ['  Change Colorscheme                      SPC t c'],
-          \ 'command': 'colors'},
+          \ 'command': 'Clap colors'},
       \ 'find_word'           :{
           \ 'description': ['  Find  word                              SPC f w'],
-          \ 'command': 'grep'},
+          \ 'command': 'Clap grep'},
       \}

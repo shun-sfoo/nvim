@@ -1,29 +1,4 @@
 {
-  "languageserver": {
-    "lua": {
-      "command": "/Users/neo/build/lua-language-server/bin/macOS/lua-language-server",
-      "args": ["-E", "/Users/neo/build/lua-language-server/main.lua"],
-      "filetypes": ["lua"],
-      "rootPatterns": [".git/"],
-      "settings": {
-        "Lua": {
-          "workspace": {
-            "library": {
-              "/usr/local/Cellar/neovim/HEAD-7dfeadb/share/nvim/runtime/lua": true
-            }
-          },
-          "runtime": {
-            "version": "LuaJIT"
-          },
-          "diagnostics": {
-            "enable": true,
-            "globals": ["vim"]
-          }
-        }
-      }
-    }
-  },
-  "metals.javaHome": "/usr/local/Cellar/openjdk@11/11.0.9/",
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 500,
   "suggest.noselect": false,

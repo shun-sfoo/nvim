@@ -122,6 +122,8 @@ function mapping:load_vim_define()
     ["c|<C-d>"]      = map_cmd('<Del>'):with_noremap(),
     ["c|<C-h>"]      = map_cmd('<BS>'):with_noremap(),
     ["c|<C-t>"]      = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]]):with_noremap(),
+    -- ["n|s"]          = map_cmd([[col(".")==1?"$":"0"]]):with_expr(),
+    -- ["v|s"]          = map_cmd([[col(".")==1?"$h":"0"]]):with_expr()
   }
 end
 

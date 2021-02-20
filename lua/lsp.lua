@@ -1,6 +1,10 @@
 vim.api.nvim_command('packadd! nvim-lspconfig')
 lspconfig = require "lspconfig"
 
+local enhance_attach = function(client,bufnr)
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+end
+
 -- go
 lspconfig.gopls.setup {
 	cmd = { "gopls", "serve" },
@@ -35,6 +39,25 @@ lspconfig.sumneko_lua.setup {
 	}
 }
 
+
+lspconfig.rust_analyzer.setup({
+    on_attach=enhance_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importMergeBehavior = "last",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+
 function goimports(timeoutms)
 	local context = { source = { organizeImports = true } }
 	vim.validate { context = { context, "t", true } }
@@ -54,3 +77,4 @@ function goimports(timeoutms)
 
 	vim.lsp.buf.formatting()
 end
+

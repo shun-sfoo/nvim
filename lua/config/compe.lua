@@ -1,3 +1,4 @@
+-- vim.cmd [[packadd! nvim-compe]]
 require "compe".setup {
   enabled = true,
   debug = false,

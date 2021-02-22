@@ -18,15 +18,23 @@ vim.g.mapleader = " "
 vim.fn.nvim_set_keymap("n", " ", "", {noremap = true})
 vim.fn.nvim_set_keymap("x", " ", "", {noremap = true})
 
-require "lsp"
--- require"plugin-settings"
-require "event".load_autocmds()
-
 -- personal function
 vim.fn.nvim_set_keymap("n", "s", 'col(".")==1?"$":"0"', {expr = true})
 vim.fn.nvim_set_keymap("v", "s", 'col(".")==1?"$h":"0"', {expr = true})
 
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+  execute "packadd packer.nvim"
+end
 vim.cmd [[packadd packer.nvim]]
+
+require "lsp"
+require "event".load_autocmds()
 
 return require("packer").startup(
   function()
@@ -35,22 +43,25 @@ return require("packer").startup(
 
     -- Post-install/update hook with neovim command
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-    use {"glepnir/zephyr-nvim", config = vim.cmd [[colorscheme zephyr]]}
     use {"neovim/nvim-lspconfig", event = "BufRead *"}
-    use {"glepnir/lspsaga.nvim", cmd = "Lspsaga"}
-    use {"hrsh7th/nvim-compe", event = "InsertEnter *", config = [[require('config.compe')]]}
+    use {"glepnir/lspsaga.nvim", cmd = "Lspsaga", config = [[require('config.lspsaga')]]}
+    use {"hrsh7th/nvim-compe", opt = true, event = "InsertEnter *", config = [[require('config.compe')]]}
     use {"Raimondi/delimitMate", event = "InsertEnter *"}
     use {
       "nvim-telescope/telescope.nvim",
-      config = [[require('config.telescope')]],
-      cmd = "Telescope",
-      requires = {
-        {"nvim-lua/popup.nvim", opt = true},
-        {"nvim-lua/plenary.nvim", opt = true},
-        {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
-      }
+      requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
+      config = [[require('config.telescope')]]
     }
     use {"mhartington/formatter.nvim", config = [[require('config.format')]]}
     use {"glepnir/prodoc.nvim", event = "BufReadPre *", config = [[require('config.prodoc')]]}
+    use {
+      "glepnir/galaxyline.nvim",
+      branch = "main",
+      config = [[require('config.evilline')]],
+      requires = {"kyazdani42/nvim-web-devicons"}
+    }
+    use {"Akin909/nvim-bufferline.lua", requires = {"kyazdani42/nvim-web-devicons"}}
+    use {"glepnir/zephyr-nvim", config = vim.cmd [[colorscheme zephyr]]}
+    use {"mhinz/vim-signify", event = {"BufReadPre *", "BufNewFile *"}, config = [[require('config.signify')]]}
   end
 )

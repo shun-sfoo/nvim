@@ -12,7 +12,4 @@ command : helptags
 
 *unicode insert*
 insert mode
-ctrl + v
-u 
-xxxx
-esc
+ctrl + v u 

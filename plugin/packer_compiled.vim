@@ -37,6 +37,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/neo/.local/share/nvim/site/pack/packer/opt/delimitMate"
   },
+  ["formatter.nvim"] = {
+    config = { "require('config.format')" },
+    loaded = true,
+    path = "/Users/neo/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
   ["lspsaga.nvim"] = {
     commands = { "Lspsaga" },
     loaded = false,
@@ -45,6 +50,7 @@ _G.packer_plugins = {
   },
   ["nvim-compe"] = {
     after_files = { "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
+    config = { "require('config.compe')" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/neo/.local/share/nvim/site/pack/packer/opt/nvim-compe"
@@ -73,6 +79,12 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/neo/.local/share/nvim/site/pack/packer/opt/popup.nvim"
   },
+  ["prodoc.nvim"] = {
+    config = { "require('config.prodoc')" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/neo/.local/share/nvim/site/pack/packer/opt/prodoc.nvim"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -80,6 +92,7 @@ _G.packer_plugins = {
   },
   ["telescope.nvim"] = {
     commands = { "Telescope" },
+    config = { "require('config.telescope')" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/neo/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
@@ -90,6 +103,8 @@ _G.packer_plugins = {
   }
 }
 
+-- Config for: formatter.nvim
+require('config.format')
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Lspsaga lua require("packer.load")({'lspsaga.nvim'}, { cmd = "Lspsaga", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
@@ -98,8 +113,9 @@ vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("p
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe', 'delimitMate'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-lspconfig'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'prodoc.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'delimitMate', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd("augroup END")
 END
 

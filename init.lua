@@ -44,7 +44,7 @@ return require("packer").startup(
     -- Post-install/update hook with neovim command
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     use {"neovim/nvim-lspconfig", event = "BufRead *"}
-    use {"glepnir/lspsaga.nvim", cmd = "Lspsaga", config = [[require('config.lspsaga')]]}
+    use {"glepnir/lspsaga.nvim", config = [[require('config.lspsaga')]]}
     use {"hrsh7th/nvim-compe", opt = true, event = "InsertEnter *", config = [[require('config.compe')]]}
     use {"Raimondi/delimitMate", event = "InsertEnter *"}
     use {

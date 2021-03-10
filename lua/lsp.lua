@@ -1,6 +1,7 @@
 vim.api.nvim_command("packadd! nvim-lspconfig")
-lspconfig = require "lspconfig"
+local lspconfig = require "lspconfig"
 
+local home = os.getenv("HOME")
 local enhance_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
@@ -21,9 +22,9 @@ lspconfig.gopls.setup {
 -- neovim lua
 lspconfig.sumneko_lua.setup {
   cmd = {
-    "~/build/lua-language-server/bin/macOS/lua-language-server",
+    home .. "/build/lua-language-server/bin/macOS/lua-language-server",
     "-E",
-    "~/build/lua-language-server/main.lua"
+    home .. "/build/lua-language-server/main.lua"
   },
   settings = {
     Lua = {
@@ -53,9 +54,6 @@ lspconfig.rust_analyzer.setup(
         },
         procMacro = {
           enable = true
-        },
-        completion = {
-          autoimport = "enable"
         }
       }
     }

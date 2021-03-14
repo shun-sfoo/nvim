@@ -6,21 +6,23 @@ vim.api.nvim_command("set shiftwidth=2")
 vim.api.nvim_command("set softtabstop=-1")
 vim.api.nvim_command("set number")
 vim.api.nvim_command('set signcolumn="yes"')
+vim.api.nvim_command("set et|retab")
 vim.o["termguicolors"] = true
 vim.o["listchars"] = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←"
 vim.o["showcmd"] = false
 vim.o["cmdheight"] = 2
 vim.o["cmdwinheight"] = 5
+vim.o["expandtab"] = true
 
 -- vim.api.nvim_command('set rtp+=~/.local/share/nvim/site/pack/nvim-lspconfig/opt/nvim-lspconfig')
 -- leader key
 vim.g.mapleader = " "
-vim.fn.nvim_set_keymap("n", " ", "", {noremap = true})
-vim.fn.nvim_set_keymap("x", " ", "", {noremap = true})
+vim.api.nvim_set_keymap("n", " ", "", {noremap = true})
+vim.api.nvim_set_keymap("x", " ", "", {noremap = true})
 
 -- personal function
-vim.fn.nvim_set_keymap("n", "s", 'col(".")==1?"$":"0"', {expr = true})
-vim.fn.nvim_set_keymap("v", "s", 'col(".")==1?"$h":"0"', {expr = true})
+vim.api.nvim_set_keymap("n", "s", 'col(".")==1?"$":"0"', {expr = true})
+vim.api.nvim_set_keymap("v", "s", 'col(".")==1?"$h":"0"', {expr = true})
 
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -46,6 +48,7 @@ return require("packer").startup(
     use {"neovim/nvim-lspconfig", event = "BufRead *"}
     use {"glepnir/lspsaga.nvim", config = [[require('config.lspsaga')]]}
     use {"hrsh7th/nvim-compe", opt = true, event = "InsertEnter *", config = [[require('config.compe')]]}
+    use {"hrsh7th/vim-vsnip", event = "InsertCharPre", config = [[require('config.vsnip')]]}
     use {"Raimondi/delimitMate", event = "InsertEnter *"}
     use {
       "nvim-telescope/telescope.nvim",
@@ -53,7 +56,8 @@ return require("packer").startup(
       config = [[require('config.telescope')]]
     }
     use {"mhartington/formatter.nvim", config = [[require('config.format')]]}
-    use {"glepnir/prodoc.nvim", event = "BufReadPre *", config = [[require('config.prodoc')]]}
+    use {"b3nj5m1n/kommentary"}
+    use {"glepnir/indent-guides.nvim", event = "BufRead"}
     use {
       "glepnir/galaxyline.nvim",
       branch = "main",

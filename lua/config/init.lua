@@ -1,0 +1,7 @@
+require("config.colorscheme")
+--require('config.completion')
+require("config.telescope")
+require("config.compe")
+require("config.signify")
+require("config.format")
+require("config.evilline")

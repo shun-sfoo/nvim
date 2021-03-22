@@ -16,8 +16,6 @@ end
 function autocmd.load_autocmds()
   local definitions = {
     ft = {
-      {"FileType", "go", "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
-      {"BufWritePre", "*.go", "lua goimports(1000)"},
       {"BufWritePost", "*.rs,*.lua,*.md", "FormatWrite"}
     },
     wins = {

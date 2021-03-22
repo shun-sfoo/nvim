@@ -1,5 +1,3 @@
-local map = require("config.utils").map
-
 local function rustfmt()
   return {exe = "rustfmt", args = {"--emit=stdout"}, stdin = true}
 end
@@ -25,6 +23,3 @@ require("formatter").setup(
     }
   }
 )
-
--- Keymap replace by autosave
--- map('n', '<leader>f', '<cmd>Format<cr>', silent)

@@ -5,9 +5,6 @@ local indent = 2
 cmd "syntax enable"
 cmd "filetype plugin indent on"
 
--- Highlight on yank
-cmd "autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = true}"
-
 utils.opt("b", "tabstop", indent)
 utils.opt("b", "shiftwidth", indent)
 utils.opt("b", "softtabstop", -1)
@@ -18,6 +15,7 @@ utils.opt("w", "number", true)
 utils.opt("w", "relativenumber", true)
 utils.opt("w", "listchars", "tab:»·,nbsp:+,trail:·,extends:→,precedes:←")
 utils.opt("o", "clipboard", "unnamed,unnamedplus")
+utils.opt("o", "completeopt", "menuone,noselect")
 utils.opt("o", "termguicolors", true)
 utils.opt("o", "showcmd", false)
 utils.opt("o", "cmdheight", 2)

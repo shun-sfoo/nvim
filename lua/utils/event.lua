@@ -19,7 +19,10 @@ function autocmd.load_autocmds()
       {"BufWritePost", "*.rs,*.lua,*.md", "FormatWrite"}
     },
     wins = {
-      {"BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]}
+      -- recover buffer line last leave
+      {"BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]},
+      -- Highlight on yank
+      {"TextYankPost", "*", "lua vim.highlight.on_yank {on_visual = true}"}
     }
   }
 

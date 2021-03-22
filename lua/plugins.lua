@@ -21,7 +21,8 @@ return require("packer").startup(
     use {"mhinz/vim-signify", event = {"BufReadPre *", "BufNewFile *"}}
     -- LSP and completion
     use {"neovim/nvim-lspconfig"}
-    use {"hrsh7th/nvim-compe", opt = true, event = "InsertEnter *"}
+    use {"hrsh7th/nvim-compe", event = "InsertEnter *"}
     use {"glepnir/indent-guides.nvim", event = "BufRead"}
+    use {"glepnir/lspsaga.nvim"}
   end
 )

@@ -24,5 +24,7 @@ return require("packer").startup(
     use {"hrsh7th/nvim-compe", event = "InsertEnter *"}
     use {"glepnir/indent-guides.nvim", event = "BufRead"}
     use {"glepnir/lspsaga.nvim"}
+    use {"hrsh7th/vim-vsnip"}
+    use {"hrsh7th/vim-vsnip-integ"}
   end
 )

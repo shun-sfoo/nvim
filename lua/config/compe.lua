@@ -18,6 +18,9 @@ require "compe".setup {
     buffer = true,
     calc = true,
     nvim_lsp = true,
-    nvim_lua = true
+    nvim_lua = true,
+    vsnip = true
   }
 }
+
+vim.g.vsnip_snippet_dir = os.getenv("HOME") .. "/.config/nvim/snippets"

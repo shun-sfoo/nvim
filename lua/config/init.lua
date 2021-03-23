@@ -3,6 +3,7 @@ require("config.compe")
 require("config.signify")
 require("config.format")
 require("config.evilline")
+require("config.smartinput")
 
 -- colorscheme
 local cmd = vim.cmd

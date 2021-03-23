@@ -27,5 +27,6 @@ return require("packer").startup(
     use {"hrsh7th/vim-vsnip"}
     use {"hrsh7th/vim-vsnip-integ"}
     use {"glepnir/dashboard-nvim"}
+    use {"glepnir/smartinput.nvim"}
   end
 )

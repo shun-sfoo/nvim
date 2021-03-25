@@ -1,6 +1,6 @@
 require("config.telescope")
 require("config.compe")
-require("config.signify")
+require("config.gitsigns")
 require("config.format")
 require("config.evilline")
 require("config.smartinput")

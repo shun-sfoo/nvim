@@ -6,6 +6,7 @@
 
 ## required
 
+- brew install lolcat
 - yarn global add --dev --exact prettier
 - yarn glboal add @appguru/luafmt
 

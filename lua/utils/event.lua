@@ -18,7 +18,7 @@ function autocmd.load_autocmds()
     ft = {
       {"BufWritePost", "*.rs,*.lua,*.md", "FormatWrite"},
       {
-        "CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost",
+        "BufEnter,BufWinEnter,TabEnter,BufWritePost",
         "*.rs ",
         "lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = 'Comment', enabled = {'TypeHint', 'ChainingHint', 'ParameterHint'}}"
       }

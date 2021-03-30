@@ -54,6 +54,13 @@
         ],
         "description": "#[derive(…)]"
     },
+    "warn": {
+        "prefix": "warn",
+        "body": [
+            "#[warn(${1})]"
+        ],
+        "description": "#[warn(…)]"
+    },
     "cfg": {
         "prefix": "cfg",
         "body": [

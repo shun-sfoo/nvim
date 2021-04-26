@@ -21,7 +21,9 @@ function autocmd.load_autocmds()
         "BufEnter,BufWinEnter,TabEnter,BufWritePost",
         "*.rs ",
         "lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = 'Comment', enabled = {'TypeHint', 'ChainingHint', 'ParameterHint'}}"
-      }
+      },
+      --autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+      {"BufReadPost", "*.lua,*.rs", [[call vista#RunForNearestMethodOrFunction()]]}
     },
     wins = {
       -- recover buffer line last leave
@@ -30,7 +32,6 @@ function autocmd.load_autocmds()
       {"TextYankPost", "*", "lua vim.highlight.on_yank {on_visual = true}"}
     }
   }
-
   autocmd.nvim_create_augroups(definitions)
 end
 return autocmd

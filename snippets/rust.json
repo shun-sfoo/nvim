@@ -61,6 +61,13 @@
         ],
         "description": "#[warn(…)]"
     },
+    "allow": {
+        "prefix": "allow",
+        "body": [
+            "#[allow(${1})]"
+        ],
+        "description": "#[allow(…)]"
+    },
     "cfg": {
         "prefix": "cfg",
         "body": [

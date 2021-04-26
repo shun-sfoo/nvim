@@ -4,6 +4,7 @@ require("config.gitsigns")
 require("config.format")
 require("config.evilline")
 require("config.smartinput")
+require("config.vista")
 
 -- colorscheme
 local cmd = vim.cmd
@@ -21,3 +22,5 @@ vim.g.dashboard_preview_file = home .. "/.config/nvim/static/neovim.cat"
 vim.g.dashboard_preview_file_height = 12
 vim.g.dashboard_preview_file_width = 80
 vim.g.dashboard_default_executive = "telescope"
+
+require "colorizer".setup()

@@ -28,6 +28,7 @@ return require("packer").startup(
     use {"mhartington/formatter.nvim"}
     use {"b3nj5m1n/kommentary"}
     use {"glepnir/smartinput.nvim"}
+    use {"kyazdani42/nvim-tree.lua"}
     -- LSP and completion
     use {"neovim/nvim-lspconfig"}
     use {"hrsh7th/nvim-compe", event = "InsertEnter *"}
@@ -35,5 +36,13 @@ return require("packer").startup(
     use {"nvim-lua/lsp_extensions.nvim"}
     use {"hrsh7th/vim-vsnip"}
     use {"hrsh7th/vim-vsnip-integ"}
+    use {"liuchengxu/vista.vim"}
+    -- markdown preview
+    -- osx: brew install glow
+    -- archlinux: yay -S glow
+    use {"npxbr/glow.nvim"}
+    -- highlight color
+    use {"norcalli/nvim-colorizer.lua"}
+    use {"vimwiki/vimwiki"}
   end
 )

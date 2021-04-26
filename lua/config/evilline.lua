@@ -2,7 +2,7 @@ local gl = require("galaxyline")
 local colors = require("galaxyline.theme").default
 local condition = require("galaxyline.condition")
 local gls = gl.section
-gl.short_line_list = {"NvimTree", "vista", "dbui"}
+gl.short_line_list = {"NvimTree", "vista", "dbui", "packer"}
 
 gls.left[1] = {
   RainbowRed = {
@@ -38,10 +38,9 @@ gls.left[2] = {
         ["!"] = colors.red,
         t = colors.red
       }
-      vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
+      vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
       return "  "
-    end,
-    highlight = {colors.red, colors.bg, "bold"}
+    end
   }
 }
 gls.left[3] = {
@@ -63,7 +62,7 @@ gls.left[5] = {
   FileName = {
     provider = "FileName",
     condition = condition.buffer_not_empty,
-    highlight = {colors.magenta, colors.bg, "bold"}
+    highlight = {colors.fg, colors.bg, "bold"}
   }
 }
 
@@ -116,9 +115,38 @@ gls.left[11] = {
   }
 }
 
+gls.mid[1] = {
+  ShowLspClient = {
+    provider = "GetLspClient",
+    condition = function()
+      local tbl = {["dashboard"] = true, [""] = true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = " LSP:",
+    highlight = {colors.yellow, colors.bg, "bold"}
+  }
+}
+
+-- call vista#RunForNearestMethodOrFunction()
+-- lua print(vim.b['vista_nearest_method_or_function'])
+gls.mid[2] = {
+  ShowFunction = {
+    provider = function()
+      local nearest_method_or_function = vim.b["vista_nearest_method_or_function"]
+      return nearest_method_or_function and nearest_method_or_function or ""
+    end,
+    icon = "    ",
+    highlight = {colors.magenta, colors.bg, "bold"}
+  }
+}
+
 gls.right[1] = {
   FileEncode = {
     provider = "FileEncode",
+    condition = condition.hide_in_width,
     separator = " ",
     separator_highlight = {"NONE", colors.bg},
     highlight = {colors.green, colors.bg, "bold"}
@@ -128,6 +156,7 @@ gls.right[1] = {
 gls.right[2] = {
   FileFormat = {
     provider = "FileFormat",
+    condition = condition.hide_in_width,
     separator = " ",
     separator_highlight = {"NONE", colors.bg},
     highlight = {colors.green, colors.bg, "bold"}
@@ -166,7 +195,7 @@ gls.right[6] = {
   DiffModified = {
     provider = "DiffModified",
     condition = condition.hide_in_width,
-    icon = " 柳",
+    icon = "  ",
     highlight = {colors.orange, colors.bg}
   }
 }

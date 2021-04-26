@@ -20,6 +20,7 @@ require("formatter").setup(
       rust = {rustfmt},
       lua = {lua_format},
       markdown = {prettier}
+      -- vimwiki = {prettier}
     }
   }
 )

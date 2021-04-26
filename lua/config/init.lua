@@ -29,9 +29,12 @@ require "colorizer".setup()
 -- vimwiki
 local vimwiki_path_list = {
   {
-    path = "~/.config/nvim/vimwiki",
-    path_html = "~/.config/nvim/vimwiki_html"
+    path = "~/doc/vimwiki",
+    path_html = "~/doc/vimwiki_html",
+    syntax = "markdown",
+    ext = ".md"
   }
 }
 
 vim.g.vimwiki_list = vimwiki_path_list
+vim.g.vimwiki_global_ext = 0

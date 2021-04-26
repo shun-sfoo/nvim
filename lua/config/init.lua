@@ -5,6 +5,7 @@ require("config.format")
 require("config.evilline")
 require("config.smartinput")
 require("config.vista")
+require("config.indentline")
 
 -- colorscheme
 local cmd = vim.cmd
@@ -24,3 +25,13 @@ vim.g.dashboard_preview_file_width = 80
 vim.g.dashboard_default_executive = "telescope"
 
 require "colorizer".setup()
+
+-- vimwiki
+local vimwiki_path_list = {
+  {
+    path = "~/.config/nvim/vimwiki",
+    path_html = "~/.config/nvim/vimwiki_html"
+  }
+}
+
+vim.g.vimwiki_list = vimwiki_path_list

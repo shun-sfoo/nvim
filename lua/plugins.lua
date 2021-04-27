@@ -29,6 +29,7 @@ return require("packer").startup(
     use {"b3nj5m1n/kommentary"}
     use {"glepnir/smartinput.nvim"}
     use {"kyazdani42/nvim-tree.lua"}
+    use {"machakann/vim-sandwich "}
     -- LSP and completion
     use {"neovim/nvim-lspconfig"}
     use {"hrsh7th/nvim-compe", event = "InsertEnter *"}

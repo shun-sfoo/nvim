@@ -31,6 +31,36 @@
 
 更多快捷键说明, `:h vimwiki-mappings`
 
+## vim-sandwich
+
+### quick start
+
+#### Add
+
+Press `sa{motion/textobject}{addition}`. For example, a key sequence `saiw(` makes `foo` to `(foo)`.
+
+#### Delete
+
+Press `sdb` or `sd{deletion}`. For example, key sequences `sdb` or `sd(` makes `(foo)` to `foo`. sdb searches a set of surrounding automatically.
+
+#### Replace
+
+Press `srb{addition}` or `sr{deletion}{addition}`. For example, key sequences `srb"` or `sr("` makes `(foo)` to `"foo"`.
+
+### textobj-sandwich
+
+Search and select a sandwiched text automatically: mapped to the key sequence `ib` and `ab`.
+
+Search and select a sandwiched text with query: mapped to the key sequence `is` and `as`.
+
+`ib` and `is` selects {surrounded text}. `ab` and `as` selects {surrounded text} including {surrounding}s.
+
+```
+             |<----ib,is---->|
+{surrounding}{surrounded text}{surrounding}
+|<-----------------ab,as----------------->|
+```
+
 ## vimwiki cheatsheet
 
 ### wiki management

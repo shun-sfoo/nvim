@@ -19,8 +19,8 @@ require("formatter").setup(
     filetype = {
       rust = {rustfmt},
       lua = {lua_format},
-      markdown = {prettier}
-      -- vimwiki = {prettier}
+      markdown = {prettier},
+      vimwiki = {prettier}
     }
   }
 )

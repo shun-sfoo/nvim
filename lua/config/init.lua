@@ -33,6 +33,11 @@ local vimwiki_path_list = {
     path_html = "~/doc/vimwiki_html",
     syntax = "markdown",
     ext = ".md"
+  },
+  {
+    path = "~/WorkSpace/rust-advance/doc/",
+    syntax = "markdown",
+    ext = ".md"
   }
 }
 

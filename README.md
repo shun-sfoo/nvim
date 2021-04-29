@@ -6,9 +6,12 @@
 
 ## required
 
-- brew install lolcat
-- yarn global add --dev --exact prettier
-- yarn glboal add @appguru/luafmt
+- `brew install lolcat`
+- `npm install -g --save-dev --save-exact prettier`
+- `npm install -g lua-fmt`
+  or (need to test)
+- `yarn global add --dev --exact prettier`
+- `yarn global add lua-fmt`
 
 ## TODO
 

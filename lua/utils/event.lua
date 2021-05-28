@@ -17,6 +17,7 @@ function autocmd.load_autocmds()
   local definitions = {
     ft = {
       {"BufWritePost", "*.rs,*.lua,*.md", "FormatWrite"},
+      -- rust-tool plugin provide the function
       {
         "BufEnter,BufWinEnter,TabEnter,BufWritePost",
         "*.rs ",

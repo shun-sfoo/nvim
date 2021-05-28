@@ -45,5 +45,7 @@ return require("packer").startup(
     -- highlight color
     use {"norcalli/nvim-colorizer.lua"}
     use {"vimwiki/vimwiki"}
+    -- enhance rust
+    -- use {"simrat39/rust-tools.nvim"}
   end
 )

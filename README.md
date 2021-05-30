@@ -18,6 +18,12 @@
 - dap
 - remap keys
 
+## git
+
+git 克隆包含子项目的仓库
+
+`git clone --recursive https://github.com/example/example.git`
+
 ## vimwiki
 
 - `<Leader>ww` 打开默认的 wiki 目录文件

@@ -17,6 +17,12 @@ nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
+""" nvim-lspconfig
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>q <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
 """ vim-compe
 inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })

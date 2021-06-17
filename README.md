@@ -1,5 +1,13 @@
 # nvim
 
+## support
+
+lua lsp support by `sumneko_lua`
+
+rust lsp support by `rust-analyzer`
+
+file finder by `telescope.nvim`
+
 ## font
 
 - [x] `operator & font-meslo-lg-nerd-font` osx

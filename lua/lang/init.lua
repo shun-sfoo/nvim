@@ -1,5 +1,7 @@
 require "lang.sumneko_lua"
 require "lang.rust_analyzer"
+require "lang.gopls"
+
 -- require "lang.rust_tool"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =

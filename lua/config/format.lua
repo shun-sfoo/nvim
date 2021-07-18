@@ -5,6 +5,9 @@ local function lua_format()
   return {exe = "luafmt", args = {"--indent-count", 2, "--stdin"}, stdin = true}
 end
 
+--[[ local function go_format()
+  return {exe = "gofmt", args = {vim.api.nvim_buf_get_name(0)}, stdin = true}
+end ]]
 local function prettier()
   return {
     exe = "prettier",
@@ -20,7 +23,16 @@ require("formatter").setup(
       rust = {rustfmt},
       lua = {lua_format},
       markdown = {prettier},
-      vimwiki = {prettier}
+      vimwiki = {prettier},
+      go = {
+        function()
+          return {
+            exe = "gofmt",
+            args = {vim.api.nvim_buf_get_name(0)},
+            stdin = true
+          }
+        end
+      }
     }
   }
 )

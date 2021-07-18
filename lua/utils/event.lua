@@ -16,7 +16,7 @@ end
 function autocmd.load_autocmds()
   local definitions = {
     ft = {
-      {"BufWritePost", "*.rs,*.lua,*.md", "FormatWrite"},
+      {"BufWritePost", "*.rs,*.lua,*.md,*.go", "FormatWrite"},
       -- rust-tool plugin provide the function
       {
         "BufEnter,BufWinEnter,TabEnter,BufWritePost",
@@ -24,7 +24,8 @@ function autocmd.load_autocmds()
         "lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = 'Comment', enabled = {'TypeHint', 'ChainingHint', 'ParameterHint'}}"
       },
       --autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-      {"BufReadPost", "*.lua,*.rs", [[call vista#RunForNearestMethodOrFunction()]]}
+      {"BufReadPost", "*.lua,*.rs", [[call vista#RunForNearestMethodOrFunction()]]},
+      {"BufWritePre", "*.go", [[lua goimports(1000)]]}
     },
     wins = {
       -- recover buffer line last leave

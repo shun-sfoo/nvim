@@ -1,27 +1,16 @@
 local api = vim.api
-local lspconfig = require 'lspconfig'
-local global = require 'core.global'
-local format = require('modules.completion.format')
-
+local lspconfig = require "lspconfig"
+local global = require "core.global"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-function _G.reload_lsp()
-  vim.lsp.stop_client(vim.lsp.get_active_clients())
-  vim.cmd [[edit]]
-end
-
-function _G.open_lsp_log()
-  local path = vim.lsp.get_log_path()
-  vim.cmd("edit " .. path)
-end
-
-vim.cmd('command! -nargs=0 LspLog call v:lua.open_lsp_log()')
-vim.cmd('command! -nargs=0 LspRestart call v:lua.reload_lsp()')
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
     -- Enable underline, use default values
     underline = true,
     -- Enable virtual text, override spacing to 4
@@ -31,43 +20,72 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
       priority = 20
     },
     -- Disable a feature
-    update_in_insert = false,
-})
+    update_in_insert = false
+  }
+)
 
-local enhance_attach = function(client,bufnr)
-  if client.resolved_capabilities.document_formatting then
-    format.lsp_before_save()
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...)
+    api.nvim_buf_set_keymap(bufnr, ...)
   end
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  local function buf_set_option(...)
+    api.nvim_buf_set_option(bufnr, ...)
+  end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  -- Mappings.
+  local opts = {noremap = true, silent = true}
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 lspconfig.gopls.setup {
-  cmd = {"gopls","--remote=auto"},
-  on_attach = enhance_attach,
+  cmd = {"gopls", "--remote=auto"},
+  on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
-    usePlaceholders=true,
-    completeUnimported=true,
+    usePlaceholders = true,
+    completeUnimported = true
   }
 }
 
 lspconfig.sumneko_lua.setup {
+  on_attach = on_attach,
   cmd = {
-    global.home.."/build/lua-language-server/bin/macOS/lua-language-server",
+    global.home .. "/build/lua-language-server/bin/macOS/lua-language-server",
     "-E",
-    global.home.."/build/lua-language-server/main.lua"
-  };
+    global.home .. "/build/lua-language-server/main.lua"
+  },
   settings = {
     Lua = {
       diagnostics = {
         enable = true,
-        globals = {"vim","packer_plugins"}
+        globals = {"vim", "packer_plugins"}
       },
       runtime = {version = "LuaJIT"},
       workspace = {
-        library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
-      },
-    },
+        library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true}, {})
+      }
+    }
   }
 }
 
@@ -84,20 +102,37 @@ lspconfig.clangd.setup {
     "--background-index",
     "--suggest-missing-includes",
     "--clang-tidy",
-    "--header-insertion=iwyu",
-  },
+    "--header-insertion=iwyu"
+  }
 }
 
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importMergeBehavior = "last",
+        importPrefix = "by_self"
+      },
+      cargo = {
+        loadOutDirsFromCheck = true
+      },
+      procMacro = {
+        enable = true
+      }
+    }
+  }
 }
 
-local servers = {
-  'dockerls','bashls','pyright'
-}
-
-for _,server in ipairs(servers) do
-  lspconfig[server].setup {
-    on_attach = enhance_attach
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = {"pyright"}
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150
+    }
   }
 end

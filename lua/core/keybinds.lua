@@ -10,7 +10,6 @@ map("n", "<leader>fb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
 map("n", "<leader>fh", "<cmd>Telescope oldfiles<cr>")
 map("n", "<leader>ft", "<cmd>Telescope help_tags<cr>")
 
-
 -- compe
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})

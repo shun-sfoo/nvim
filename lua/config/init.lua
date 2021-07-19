@@ -3,9 +3,7 @@ require("config.compe")
 require("config.gitsigns")
 require("config.format")
 require("config.evilline")
-require("config.smartinput")
 require("config.vista")
-require("config.indentline")
 
 -- colorscheme
 local cmd = vim.cmd

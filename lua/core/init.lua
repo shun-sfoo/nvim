@@ -1,10 +1,23 @@
-local utils = require("utils")
+-- Map leader to space
+vim.g.mapleader = " "
+
+local utils = require("core.utils")
 local cmd = vim.cmd
 local indent = 2
 
 cmd "syntax enable"
 cmd "filetype plugin indent on"
 
+-- key bindings
+utils.map("n", "<C-l>", "<cmd>noh<CR>") -- Clear highlights
+utils.map("i", "jk", "<Esc>") -- jk to escape
+utils.map("i", "<C-f>", "<Right>")
+utils.map("i", "<C-b>", "<Left>")
+utils.map("n", "<leader>e", ":NvimTreeToggle<CR>")
+utils.map("n", "<leader>v", ":Vista<CR>")
+utils.map("n", "<leader>g", ":Glow<CR>")
+
+-- settings
 utils.opt("b", "tabstop", indent)
 utils.opt("b", "shiftwidth", indent)
 utils.opt("b", "softtabstop", -1)
@@ -22,3 +35,9 @@ utils.opt("o", "cmdheight", 2)
 utils.opt("o", "cmdwinheight", 5)
 utils.opt("o", "scrolloff", 4)
 -- utils.opt("o", "autochdir", true)
+
+local pack = require "core.pack"
+pack.ensure_plugins()
+pack.load_compile()
+
+require "core.keybinds"

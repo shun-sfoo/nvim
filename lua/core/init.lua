@@ -38,7 +38,7 @@ utils.opt("o", "foldenable", true)
 
 local pack = require "core.pack"
 pack.ensure_plugins()
-pack.load_compile()
-
 require("core.autocmd").load_autocmds()
 require("core.keybinds").load_keybinds()
+pack.load_compile()
+

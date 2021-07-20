@@ -41,4 +41,16 @@ editor["folke/which-key.nvim"] = {
   end
 }
 
+editor["folke/zen-mode.nvim"] = {
+  config = function()
+    require("zen-mode").setup {}
+  end
+}
+
+editor["folke/twilight.nvim"] = {
+  config = function()
+    require("twilight").setup {}
+  end
+}
+
 return editor

@@ -24,6 +24,7 @@ file finder by `telescope.nvim`
 ## TODO
 
 - dap
+- key mapping cheashet by doc form
 
 ## git
 

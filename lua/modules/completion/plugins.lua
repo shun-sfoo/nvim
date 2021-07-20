@@ -22,4 +22,14 @@ completion["nvim-telescope/telescope.nvim"] = {
   }
 }
 
+completion["L3MON4D3/LuaSnip"] = {
+  config = function()
+    require("luasnip/loaders/from_vscode").load(
+      {paths = {"~/.local/share/nvim/site/pack/packer/start/friendly-snippets"}}
+    )
+  end
+}
+
+completion["rafamadriz/friendly-snippets"] = {}
+
 return completion

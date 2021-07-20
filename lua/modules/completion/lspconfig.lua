@@ -4,6 +4,13 @@ local global = require "core.global"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    "documentation",
+    "detail",
+    "additionalTextEdits"
+  }
+}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -124,15 +131,3 @@ lspconfig.rust_analyzer.setup {
     }
   }
 }
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = {"pyright"}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150
-    }
-  }
-end

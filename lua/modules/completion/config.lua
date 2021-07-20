@@ -1,9 +1,5 @@
 local config = {}
 
-local utils = require("core.utils")
-
-local map = utils.map
-
 function config.nvim_lsp()
   require("modules.completion.lspconfig")
 end
@@ -14,7 +10,7 @@ function config.nvim_compe()
     autocomplete = true,
     debug = false,
     min_length = 1,
-    preselect = "enable",
+    preselect = "always",
     throttle_time = 80,
     source_timeout = 200,
     resolve_timeout = 800,

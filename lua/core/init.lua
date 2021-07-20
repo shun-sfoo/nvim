@@ -41,4 +41,4 @@ pack.ensure_plugins()
 pack.load_compile()
 
 require("core.autocmd").load_autocmds()
-require "core.keybinds"
+require("core.keybinds").load_keybinds()

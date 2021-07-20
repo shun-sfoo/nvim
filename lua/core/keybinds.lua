@@ -1,17 +1,19 @@
-local utils = require("core.utils")
-local map = utils.map
+local fn = vim.fn
+local vim_path = vim.fn.stdpath("config")
+local modules_dir = vim_path .. "/lua/modules"
 
--- telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
--- can't show all buffer issues
--- https://github.com/nvim-telescope/telescope.nvim/issues/368
-map("n", "<leader>fb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
-map("n", "<leader>fh", "<cmd>Telescope oldfiles<cr>")
-map("n", "<leader>ft", "<cmd>Telescope help_tags<cr>")
+local keybinds = {}
 
--- compe
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+function keybinds:load_keybinds()
+  local tmp = vim.split(fn.globpath(modules_dir, "*/keybinds.lua"), "\n")
+  local list = {}
+  for _, f in ipairs(tmp) do
+    list[#list + 1] = f:sub(#modules_dir - 6, -1)
+  end
+
+  for _, map in ipairs(list) do
+    local repos = require(map:sub(0, #map - 4))
+  end
+end
+
+return keybinds

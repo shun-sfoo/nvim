@@ -24,7 +24,6 @@ file finder by `telescope.nvim`
 ## TODO
 
 - dap
-- treesitter foldmethod
 
 ## git
 

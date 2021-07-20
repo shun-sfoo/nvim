@@ -14,8 +14,6 @@ utils.map("i", "jk", "<Esc>") -- jk to escape
 utils.map("i", "<C-f>", "<Right>")
 utils.map("i", "<C-b>", "<Left>")
 utils.map("n", "<leader>e", ":NvimTreeToggle<CR>")
-utils.map("n", "<leader>v", ":Vista<CR>")
-utils.map("n", "<leader>g", ":Glow<CR>")
 
 -- settings
 utils.opt("b", "tabstop", indent)
@@ -34,6 +32,8 @@ utils.opt("o", "showcmd", false)
 utils.opt("o", "cmdheight", 2)
 utils.opt("o", "cmdwinheight", 5)
 utils.opt("o", "scrolloff", 4)
+utils.opt("o", "foldlevelstart", 99)
+utils.opt("o", "foldenable", true)
 -- utils.opt("o", "autochdir", true)
 
 local pack = require "core.pack"

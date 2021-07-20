@@ -1,4 +1,5 @@
 local config = {}
+
 function config.galaxyline()
   require("modules.ui.evilline")
 end

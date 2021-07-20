@@ -4,6 +4,7 @@ local conf = require("modules.ui.config")
 ui["glepnir/zephyr-nvim"] = {
   config = [[vim.cmd('colorscheme zephyr')]]
 }
+
 ui["kyazdani42/nvim-tree.lua"] = {
   cmd = {"NvimTreeToggle", "NvimTreeOpen"},
   requires = "kyazdani42/nvim-web-devicons"

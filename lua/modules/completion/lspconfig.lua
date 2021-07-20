@@ -65,16 +65,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-lspconfig.gopls.setup {
-  cmd = {"gopls", "--remote=auto"},
-  on_attach = on_attach,
-  capabilities = capabilities,
-  init_options = {
-    usePlaceholders = true,
-    completeUnimported = true
-  }
-}
-
 lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
   cmd = {
@@ -93,23 +83,6 @@ lspconfig.sumneko_lua.setup {
         library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true}, {})
       }
     }
-  }
-}
-
-lspconfig.tsserver.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-    enhance_attach(client)
-  end
-}
-
-lspconfig.clangd.setup {
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--suggest-missing-includes",
-    "--clang-tidy",
-    "--header-insertion=iwyu"
   }
 }
 

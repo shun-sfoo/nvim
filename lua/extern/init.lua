@@ -1,0 +1,5 @@
+require('extern.treesitter')
+require('extern.enhance')
+require('extern.completion')
+require('extern.completion')
+require('extern.programming')

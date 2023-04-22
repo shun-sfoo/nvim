@@ -59,7 +59,7 @@ else
     0,
     500,
     vim.schedule_wrap(function()
-      if table.concat(tbl) == table.concat(require('paq').getList()) then
+      if table.concat(tbl) == table.concat(require('paq').get_installed()) then
         require('internal')
         require('extern')
         timer:close()

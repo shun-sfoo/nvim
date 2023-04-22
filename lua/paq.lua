@@ -252,15 +252,13 @@ local function list()
   end
 end
 
-local function getList()
+local function get_installed()
   local installed = vim.tbl_filter(function(pkg) return pkg.exists end, packages)
-  local sort_by_name = function(a, b) return a < b end
   local iPack = {}
-
   for _, value in ipairs(installed) do
     table.insert(iPack, value.name)
   end
-  table.sort(iPack, sort_by_name)
+  table.sort(iPack, function(a, b) return a < b end)
   return iPack
 end
 
@@ -312,7 +310,7 @@ return setmetatable({
     return vim.tbl_keys(vim.tbl_map(function(pkg) return pkg.run end, packages))
   end,
   list = list,
-  getList = getList,
+  get_installed = get_installed,
   log_open = function() vim.cmd('sp ' .. logfile) end,
   log_clean = function() return assert(uv.fs_unlink(logfile)) and vim.notify(' Paq: log file deleted') end,
   register = register,

@@ -12,20 +12,16 @@ local packages = {
   'nvim-telescope/telescope-file-browser.nvim',
   'norcalli/nvim-colorizer.lua',
   'TimUntersberger/neogit',
-  'rafcamlet/nvim-luapad',
 
   -- { 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd('TSUpdate') end },
   'nvim-treesitter/nvim-treesitter',
 
   'neovim/nvim-lspconfig',
-  'simrat39/rust-tools.nvim',
   'glepnir/lspsaga.nvim',
-  'folke/neodev.nvim',
 
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-cmdline',
   { 'L3MON4D3/LuaSnip', run = 'make install_jsregexp LUAJIT_OSX_PATH=/usr/local/opt/luajit' },
-  'saadparwaiz1/cmp_luasnip',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',

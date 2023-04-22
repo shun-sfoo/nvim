@@ -1,7 +1,5 @@
 require('lspsaga').setup({})
 
-require('neodev').setup({})
-
 local signs = {
   Error = ' ',
   Warn = ' ',
@@ -10,8 +8,6 @@ local signs = {
 }
 
 local lspconfig = require('lspconfig')
-local rt = require('rust-tools')
-local _capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
@@ -57,60 +53,12 @@ local _attach = function(_, _)
   keymap({ 'n', 't' }, '<A-d>', '<cmd>Lspsaga term_toggle<CR>')
 end
 
-lspconfig.lua_ls.setup({
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
-        checkThirdParty = false,
-      },
-      completion = {
-        callSnippet = 'Replace',
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-  on_attach = _attach,
-  capabilities = _capabilities,
-})
-
-local rust_attach = function()
-  _attach()
-  local keymap = vim.keymap.set
-  keymap('n', '<leader>rr', '<cmd>RustRunnables<CR>')
-  keymap('n', '<leader>re', '<cmd>RustExpandMacro<CR>')
-  keymap('n', '<leader>rp', '<cmd>RustMoveItemUp<CR>')
-  keymap('n', '<leader>rn', '<cmd>RustMoveItemDown<CR>')
-  keymap('n', '<leader>rj', '<cmd>RustJoinLines<CR>')
-  keymap('n', '<leader>rp', '<cmd>RustParentModule<CR>')
-  keymap('n', '<leader>ro', '<cmd>RustOpenCargo<CR>')
-  keymap('n', '<leader>rd', '<cmd>RustDebuggables<CR>')
-end
-
-rt.setup({
-  server = {
-    on_attach = rust_attach,
-    capabilities = _capabilities,
-  },
-})
-
 local servers = {
   'clangd',
-  'cmake',
-  'dartls',
 }
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup({
     on_attach = _attach,
-    capabilities = _capabilities,
   })
 end

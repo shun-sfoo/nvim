@@ -10,12 +10,16 @@ local packages = {
   'lewis6991/gitsigns.nvim',
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-file-browser.nvim',
+  { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   'norcalli/nvim-colorizer.lua',
   'TimUntersberger/neogit',
   'rafcamlet/nvim-luapad',
+  'nvimdev/whiskyline.nvim',
 
   -- { 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd('TSUpdate') end },
   'nvim-treesitter/nvim-treesitter',
+
+  'echasnovski/mini.nvim',
 
   'neovim/nvim-lspconfig',
   'simrat39/rust-tools.nvim',
@@ -55,6 +59,7 @@ else
   table.sort(tbl, function(a, b) return a < b end)
 
   local timer = vim.loop.new_timer()
+  ---@diagnostic disable-next-line: need-check-nil
   timer:start(
     0,
     500,
@@ -62,6 +67,7 @@ else
       if table.concat(tbl) == table.concat(require('paq').get_installed()) then
         require('internal')
         require('extern')
+        ---@diagnostic disable-next-line: need-check-nil
         timer:close()
       end
     end)

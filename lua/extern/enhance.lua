@@ -44,10 +44,48 @@ require('gitsigns').setup({
 })
 
 local builtin = require('telescope.builtin')
+
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fe', ':Telescope file_browser<CR>', { noremap = true })
 
-require("telescope").load_extension "file_browser"
+local fb_actions = require('telescope').extensions.file_browser.actions
+
+require('telescope').setup({
+  extensions = {
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
+    file_browser = {
+      mappings = {
+        ['n'] = {
+          ['c'] = fb_actions.create,
+          ['r'] = fb_actions.rename,
+          ['d'] = fb_actions.remove,
+          ['o'] = fb_actions.open,
+          ['u'] = fb_actions.goto_parent_dir,
+        },
+      },
+    },
+  },
+})
+
+require('telescope').load_extension('file_browser')
+require('telescope').load_extension('fzf')
+
+-- mini
+require('mini.comment').setup()
+require('mini.indentscope').setup()
+require('mini.cursorword').setup()
+require('mini.pairs').setup()
+require('mini.pairs').setup()
+require('mini.surround').setup()
+
+require('whiskyline').setup()
 

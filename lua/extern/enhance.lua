@@ -49,9 +49,6 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fe', ':Telescope file_browser<CR>', { noremap = true })
-
-local fb_actions = require('telescope').extensions.file_browser.actions
 
 require('telescope').setup({
   extensions = {
@@ -62,21 +59,9 @@ require('telescope').setup({
       case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
-    file_browser = {
-      mappings = {
-        ['n'] = {
-          ['c'] = fb_actions.create,
-          ['r'] = fb_actions.rename,
-          ['d'] = fb_actions.remove,
-          ['o'] = fb_actions.open,
-          ['u'] = fb_actions.goto_parent_dir,
-        },
-      },
-    },
   },
 })
 
-require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzf')
 
 -- mini
@@ -87,5 +72,61 @@ require('mini.pairs').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
 
-require('whiskyline').setup()
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require('nvim-tree').setup()
 
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>')
+
+local lsp_icon = {
+  rust_analyzer = ' ',
+  lua_ls = ' ',
+  clangd = ' ',
+}
+
+local function section_lspinfo(args)
+  local lsp = vim.lsp.util.get_progress_messages()[1]
+  if lsp then
+    local name = lsp_icon[lsp.name] or ''
+    local msg = lsp.message or ''
+    local percentage = lsp.percentage or 0
+    local title = lsp.title or ''
+    if MiniStatusline.is_truncated(args.trunc_width) then return string.format(' %s%%%% ', percentage) end
+    return string.format(' %s: %s %s (%s%%%%) ', name, title, msg, percentage)
+  end
+  return ''
+end
+
+local function section_time()
+  local time = vim.fn.strftime('%H:%M')
+  return string.format('  %s', time)
+end
+
+require('mini.statusline').setup({
+  set_vim_settings = false,
+  content = {
+    active = function()
+      local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+      local git = MiniStatusline.section_git({ trunc_width = 75 })
+      local lspinfo = section_lspinfo({ trunc_width = 140 })
+      -- Default diagnstics icon has some problems displaying in Kitty terminal
+      local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+      local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+      local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+      local location = MiniStatusline.section_location({ trunc_width = 75 })
+
+      -- Usage of `MiniStatusline.combine_groups()` ensures highlighting and
+      -- correct padding with spaces between groups (accounts for 'missing'
+      -- sections, etc.)
+      return MiniStatusline.combine_groups({
+        { hl = mode_hl, strings = { mode } },
+        { hl = 'MiniStatuslineDevinfo', strings = { git, diagnostics } },
+        '%<', -- Mark general truncate point
+        { hl = 'MiniStatuslineFilename', strings = { filename, lspinfo } },
+        '%=', -- End left alignment
+        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+        { hl = mode_hl, strings = { location } },
+      })
+    end,
+  },
+})

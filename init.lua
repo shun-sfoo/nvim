@@ -9,12 +9,11 @@ local packages = {
   'rmagatti/auto-session',
   'lewis6991/gitsigns.nvim',
   'nvim-telescope/telescope.nvim',
-  'nvim-telescope/telescope-file-browser.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   'norcalli/nvim-colorizer.lua',
   'TimUntersberger/neogit',
   'rafcamlet/nvim-luapad',
-  'nvimdev/whiskyline.nvim',
+  'nvim-tree/nvim-tree.lua',
 
   -- { 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd('TSUpdate') end },
   'nvim-treesitter/nvim-treesitter',

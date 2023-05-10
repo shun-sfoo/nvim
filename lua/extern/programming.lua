@@ -3,7 +3,7 @@ require('lspsaga').setup({})
 require('neodev').setup({})
 
 local signs = {
-  Error = ' ',
+  Error = ' ',
   Warn = ' ',
   Info = ' ',
   Hint = ' ',
@@ -19,13 +19,14 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
-  signs = true,
-  update_in_insert = true,
-  severity_sort = true,
+  underline = true,
+  update_in_insert = false,
   virtual_text = {
+    spacing = 4,
+    source = 'if_many',
     prefix = '🔥',
-    source = true,
   },
+  severity_sort = true,
 })
 
 local _attach = function(_, _)

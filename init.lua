@@ -14,6 +14,7 @@ local packages = {
   'TimUntersberger/neogit',
   'rafcamlet/nvim-luapad',
   'nvim-tree/nvim-tree.lua',
+  'j-hui/fidget.nvim',
 
   -- { 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd('TSUpdate') end },
   'nvim-treesitter/nvim-treesitter',

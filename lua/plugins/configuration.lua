@@ -66,6 +66,6 @@ return {
     },
   },
   {
-    { 'Pocco81/auto-save.nvim', opts = {} },
+    { 'Pocco81/auto-save.nvim', event = 'BufEnter', opts = {} },
   },
 }

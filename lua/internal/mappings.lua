@@ -7,6 +7,7 @@ vim.keymap.set('i', '<C-a>', '<Home>', {})
 vim.keymap.set('i', '<C-e>', '<End>', {})
 vim.keymap.set('n', '<Leader>tf', function() require('internal.fmt'):action() end, { desc = 'formatter' })
 vim.keymap.set('n', '<Leader>tw', function() require('internal.haici').search() end, { desc = 'formatter' })
+vim.keymap.set('n', '<Leader>tb', function() require('extern.runner.cpp') end, { desc = 'build' })
 vim.keymap.set(
   'n',
   '<Leader>ty',

@@ -116,7 +116,7 @@ M.create_float_win = function(res)
   -- 多次尝试下的解决方案：
   -- 将自动事件 CursorMoved 绑定到当前 buffer 下执行一次，
   -- 当前 buffer并非新创建的buffer
-  vim.cmd([[au CursorMoved <buffer> ++once lua require'core.haici'.close_win()]])
+  vim.cmd([[au CursorMoved <buffer> ++once lua require'extern.haici'.close_win()]])
 end
 
 function M.close_win()

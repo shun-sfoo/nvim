@@ -1,6 +1,7 @@
 local packages = {
   -- dependency by rust-tools,telescope
   'nvim-lua/plenary.nvim',
+  'MunifTanjim/nui.nvim',
 
   'folke/which-key.nvim',
   'folke/tokyonight.nvim',

@@ -46,7 +46,7 @@ return {
         'jsonc',
         'c',
         'cpp',
-        'rust',
+        'rust'
       },
     },
   },

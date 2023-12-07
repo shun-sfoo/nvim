@@ -32,4 +32,21 @@ return {
       -- vim.g.yuck_lisp_indentation = 1
     end,
   },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    opts = {
+      ensure_installed = {
+        'vim',
+        'lua',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'regex',
+        'bash',
+        'jsonc',
+        'c',
+        'cpp',
+      },
+    },
+  },
 }

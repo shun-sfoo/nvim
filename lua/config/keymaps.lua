@@ -3,3 +3,4 @@
 -- Add any additional keymaps here
 vim.keymap.set('i', 'jk', '<Esc>', nil)
 vim.keymap.set('n', '<leader>rr', function() require('util.task').action() end, nil)
+vim.keymap.set('n', '<leader>th', function() require('util.haici').search() end, nil)

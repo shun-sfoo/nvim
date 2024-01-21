@@ -10,6 +10,7 @@ require('lazy').setup({
   spec = {
     -- add LazyVim and import its plugins
     { 'LazyVim/LazyVim', import = 'lazyvim.plugins' },
+    { import = 'lazyvim.plugins.extras.dap.core' },
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
     { import = 'lazyvim.plugins.extras.lang.cmake' },
     { import = 'lazyvim.plugins.extras.lang.markdown' },
@@ -18,6 +19,7 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.json' },
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.util.mini-hipatterns' },
+    { import = 'lazyvim.plugins.extras.lang.java' },
     -- import/override with your plugins
     { import = 'plugins' },
   },

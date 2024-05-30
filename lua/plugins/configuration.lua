@@ -1,7 +1,6 @@
 return {
   {
     'folke/tokyonight.nvim',
-    lazy = true,
     opts = {
       style = 'storm',
       transparent = true,
@@ -12,6 +11,14 @@ return {
     },
   },
   {
-    { 'Pocco81/auto-save.nvim', event = 'BufEnter', opts = {} },
+    {
+      'Pocco81/auto-save.nvim',
+      event = 'BufEnter',
+      opts = {
+        execution_message = {
+          message = '',
+        },
+      },
+    },
   },
 }

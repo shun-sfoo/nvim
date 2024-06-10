@@ -21,4 +21,16 @@ return {
       },
     },
   },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    opts = {
+      ensure_installed = {
+        'hyprlang',
+      },
+    },
+  },
+  {
+    'elkowar/yuck.vim',
+    ft = 'yuck',
+  },
 }

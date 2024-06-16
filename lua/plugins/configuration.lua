@@ -20,7 +20,10 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
-        cland = {
+        lua_ls = {
+          mason = false,
+        },
+        clangd = {
           mason = false,
         },
       },

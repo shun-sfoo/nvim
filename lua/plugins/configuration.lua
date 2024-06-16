@@ -3,11 +3,6 @@ return {
     'folke/tokyonight.nvim',
     opts = {
       style = 'storm',
-      transparent = true,
-      styles = {
-        sidebars = 'transparent',
-        floats = 'transparent',
-      },
     },
   },
   {
@@ -22,15 +17,13 @@ return {
     },
   },
   {
-    'nvim-treesitter/nvim-treesitter',
+    'neovim/nvim-lspconfig',
     opts = {
-      ensure_installed = {
-        'hyprlang',
+      servers = {
+        cland = {
+          mason = false,
+        },
       },
     },
-  },
-  {
-    'elkowar/yuck.vim',
-    ft = 'yuck',
   },
 }

@@ -17,9 +17,16 @@ return {
     },
   },
   {
-    'williamboman/mason.nvim',
+    'neovim/nvim-lspconfig',
     opts = {
-      ensure_installed = {},
+      servers = {
+        lua_ls = {
+          mason = false,
+        },
+        clangd = {
+          mason = false,
+        },
+      },
     },
   },
 }

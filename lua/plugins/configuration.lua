@@ -3,11 +3,11 @@ return {
     'folke/tokyonight.nvim',
     opts = {
       style = 'storm',
-      transparent = true,
-      styles = {
-        sidebars = 'transparent',
-        floats = 'transparent',
-      },
+      -- transparent = true,
+      -- styles = {
+      --   sidebars = 'transparent',
+      --   floats = 'transparent',
+      -- },
     },
   },
   {
@@ -25,7 +25,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
     opts = {
       ensure_installed = {
-        'hyprlang',
+        -- 'hyprlang',
+        'kdl',
       },
     },
   },

@@ -13,7 +13,6 @@ require('lazy').setup({
     { 'LazyVim/LazyVim', import = 'lazyvim.plugins' },
     { import = 'lazyvim.plugins.extras.lang.clangd' },
     { import = 'lazyvim.plugins.extras.lang.cmake' },
-    { import = 'lazyvim.plugins.extras.lang.haskell' },
     { import = 'lazyvim.plugins.extras.lang.rust' },
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.util.mini-hipatterns' },
@@ -21,9 +20,10 @@ require('lazy').setup({
     -- Note: for markdown after install need  upgrade too
     -- vim.cmd [[Lazy load markdown-preview.nvim]]
     -- vim.fn["mkdp#util#install"]()
-    { import = 'lazyvim.plugins.extras.lang.markdown' },
+    -- { import = 'lazyvim.plugins.extras.lang.markdown' },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.go" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins

@@ -11,18 +11,23 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.opt_local.spell = false end,
 })
 
---  speccif for qt git project
-vim.api.nvim_create_autocmd({ 'BufEnter', 'DirChanged' }, {
+-- 针对 qt项目设置独立缩进规则
+vim.api.nvim_create_autocmd('FileType', {
   pattern = 'cpp',
   callback = function()
-    -- 通过 .git 目录检测项目根路径
+    -- 检测 Git 项目根目录是否包含 "qt"
     local git_root = vim.fs.root(0, '.git')
-    if git_root and string.find(git_root:lower(), 'qt') then
-      -- 设置 Qt 项目缩进规则：4空格
+    local is_qt_project = git_root and string.find(git_root:lower(), 'qt')
+
+    -- 根据条件设置缩进
+    if is_qt_project then
+      -- Qt 项目使用 4 空格缩进
       vim.bo.shiftwidth = 4
       vim.bo.tabstop = 4
       vim.bo.softtabstop = 4
       vim.bo.expandtab = true
+      vim.bo.cindent = true -- 启用 C 风格缩进[7](@ref)
+      vim.bo.smartindent = true -- 智能缩进[3](@ref)
     end
   end,
 })
